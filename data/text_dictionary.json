@@ -4,6 +4,12 @@
       "phones": [
         {"name":"Linglong", "file":"KZ Linglong"}
       ]
+    },
+    {
+      "name": "Tanchjim",
+      "phones": [
+        {"name":"Ola Bass", "file":"Tanchjim Ola Bass"}
+      ]
     }
   ]
   
