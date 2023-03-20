@@ -2,7 +2,8 @@
     {
       "name": "KZ",
       "phones": [
-        {"name":"Linglong", "file":"KZ Linglong"}
+        {"name":"Linglong", "file":"KZ Linglong"},
+        {"name":"AS 16 Pro", "file":"KZ AS16 Pro"}
       ]
     },
     {
