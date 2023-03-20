@@ -1703,7 +1703,7 @@ d3.json(typeof PHONE_BOOK !== "undefined" ? PHONE_BOOK
         initMode = "config";
     }
 
-    // brands.push({ name: "Uploaded", phones: [] });
+    brands.push({ name: "Uploaded", phones: [] });
     brands.forEach(b => brandMap[b.name] = b);
     brands.forEach(function (b) {
         b.active = false;
@@ -2321,7 +2321,6 @@ function addExtra() {
             ch[0] = Equalizer.interp(f_values, ch[0]);
             if (uploadType === "fr") {
                 name.match(/ R$/) && ch.splice(0, 0, null);
-                brandMap.push({ name: "Uploaded", phones: [] });
                 let phoneObj = addOrUpdatePhone(brandMap.Uploaded, phone, ch);
                 showPhone(phoneObj, false);
             } else if (uploadType === "target") {
