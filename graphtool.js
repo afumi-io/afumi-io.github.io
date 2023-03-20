@@ -2321,7 +2321,7 @@ function addExtra() {
             ch[0] = Equalizer.interp(f_values, ch[0]);
             if (uploadType === "fr") {
                 name.match(/ R$/) && ch.splice(0, 0, null);
-                brands.push({ name: "Uploaded", phones: [] });
+                brandMap.push({ name: "Uploaded", phones: [] });
                 let phoneObj = addOrUpdatePhone(brandMap.Uploaded, phone, ch);
                 showPhone(phoneObj, false);
             } else if (uploadType === "target") {
