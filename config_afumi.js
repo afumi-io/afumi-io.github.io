@@ -12,10 +12,11 @@ const init_phones = ["Afumi DT6IE"],                             // Optional. Wh
       alt_sticky_graph = true,                      // If active graphs overflows the viewport, does the graph scroll with the page or stick to the viewport?
       alt_animated = false,                         // Determines if new graphs are drawn with a 1-second animation, or appear instantly
       alt_header = true,                            // Display a configurable header at the top of the alt layout
-      alt_tutorial = false,                         // Display a configurable frequency response guide below the graph
+      alt_tutorial = true,                         // Display a configurable frequency response guide below the graph
       site_url = './',                              // URL of your graph "homepage"
       share_url = true,                             // If true, enables shareable URLs
-      watermark_text = "",                 // Optional. Watermark appears behind graphs
+      watermark_text = "Afumi IE DB",                 // Optional. Watermark appears behind graphs
+      watermark_text2 = "afumi-io.github.io",
       watermark_image_url = "img/afumiio.png",   // Optional. If image file is in same directory as config, can be just the filename
       page_title = "Afumi IE DB",                     // Optional. Appended to the page title if share URLs are enabled
       page_description = "View and compare frequency response graphs for earphones",
@@ -67,8 +68,11 @@ function watermark(svg) {
     
     if ( watermark_text ) {
         wm.append("text")
-            .attrs({x:0, y:70, "font-size":28, "text-anchor":"middle", "class":"graph-name"})
+            .attrs({x:200, y:141, "font-size":16, "text-anchor":"middle", "class":"graph-name"})
             .text(watermark_text);
+		wm.append("text")
+            .attrs({x:200, y:161, "font-size":16, "text-anchor":"middle", "class":"graph-name"})
+            .text(watermark_text2);	
     }
 }
 
@@ -199,7 +203,7 @@ let headerLogoText = "Afumi IE DB",
     headerLinks = [
     {
         name: "Home Page",
-        url: "https://afumi.github.io"
+        url: "https://afumi-io.github.io/"
     }
 ];
 
