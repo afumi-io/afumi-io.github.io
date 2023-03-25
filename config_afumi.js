@@ -42,7 +42,7 @@ const init_phones = ["Afumi DT6IE"],                             // Optional. Wh
 // Specify which targets to display
 const targets = [
     { type:"Main",   
-        files: ["Afumi DT6IE", "Afumi DT10IE", "Base-line IE Neutral Testing"] },
+        files: ["Afumi DT6IE", "Afumi DT10IE", "Base-line IE Neutral Testing", "Obviously Supperior 2 Nipples"] },
     { type:"Reference",
         files: ["Harman IE 2019v2", "Harman IE 2016", "Diffuse Field"] },
     { type:"Other",   
