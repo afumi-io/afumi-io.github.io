@@ -1,16 +1,39 @@
 [
-    {
-      "name": "KZ",
-      "phones": [
-        {"name":"Linglong", "file":"KZ Linglong"},
-        {"name":"AS 16 Pro", "file":"KZ AS16 Pro"}
-      ]
-    },
-    {
-      "name": "Tanchjim",
-      "phones": [
-        {"name":"Ola Bass", "file":"Tanchjim Ola Bass"}
-      ]
-    }
-  ]
-  
+  {
+    "name" : "KZ",
+    "phones" : [
+      {
+        "name" : "Linglong",
+        "file" : [
+          "KZ Linglong"
+        ],
+        "suffix" : [
+          ""
+        ]
+      },
+      {
+        "name" : "AS 16 Pro",
+        "file" : [
+          "KZ AS16 Pro"
+        ],
+        "suffix" : [
+          ""
+        ]
+      }
+    ]
+  },
+  {
+    "name" : "Tanchjim",
+    "phones" : [
+      {
+        "name" : "Ola Bass",
+        "file" : [
+          "Tanchjim Ola Bass"
+        ],
+        "suffix" : [
+          ""
+        ]
+      }
+    ]
+  }
+]

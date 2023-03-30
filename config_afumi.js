@@ -1,5 +1,7 @@
+
+
 // Configuration options
-const init_phones = ["Afumi DT6IE"],                             // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
+var init_phones = ["Afumi DT6IE"],                             // Optional. Which graphs to display on initial load. Note: Share URLs will override this set
       DIR = "data/",                          // Directory where graph files are stored
       DBDIR = "data/audio_db/",
       TARGETDIR = "data/targets/",
@@ -39,17 +41,6 @@ const init_phones = ["Afumi DT6IE"],                             // Optional. Wh
       extraEQBandsMax = 20,                         // Max EQ bands available
       extraToneGeneratorEnabled = true;             // Enable tone generator function
 
-// Specify which targets to display
-const targets = [
-    { type:"Main",   
-        files: ["Afumi DT6IE", "Afumi DT10IE", "Base-line IE Neutral Testing", "Obviously Supperior 2 Nipples"] },
-    { type:"Reference",
-        files: ["Harman IE 2019v2", "Harman IE 2016", "Diffuse Field"] },
-    { type:"Other",   
-        files: ["PaulWasabii"] }
-];
-
-
 
 // *************************************************************
 // Functions to support config options set above; probably don't need to change these
@@ -70,143 +61,34 @@ function watermark(svg) {
         wm.append("text")
             .attrs({x:200, y:141, "font-size":16, "text-anchor":"middle", "class":"graph-name"})
             .text(watermark_text);
-		wm.append("text")
+        wm.append("text")
             .attrs({x:200, y:161, "font-size":16, "text-anchor":"middle", "class":"graph-name"})
             .text(watermark_text2);	
     }
 }
 
-
-
-// Parse fr text data from REW or AudioTool format with whatever separator
-function tsvParse(fr) {
-    return fr.split(/[\r\n]/)
-        .map(l => l.trim()).filter(l => l && l[0] !== '*')
-        .map(l => l.split(/[\s,;]+/).map(e => parseFloat(e)).slice(0, 2))
-        .filter(t => !isNaN(t[0]) && !isNaN(t[1]));
-}
-
-// Apply stylesheet based layout options above
-function setLayout() {
-    function applyStylesheet(styleSheet) {
-        var docHead = document.querySelector("head"),
-            linkTag = document.createElement("link");
-        
-        linkTag.setAttribute("rel", "stylesheet");
-        linkTag.setAttribute("type", "text/css");
-        
-        linkTag.setAttribute("href", styleSheet);
-        docHead.append(linkTag);
-    }
-
-    if ( !alt_layout ) {
-        applyStylesheet("style.css");
-    } else {
-        applyStylesheet("style-alt.css");
-        applyStylesheet("style-alt-theme.css");
-    }
-}
-setLayout();
-
-
-
-// Set restricted mode
-function setRestricted() {
-    if ( restricted ) {
-        max_compare = 2;
-        restrict_target = false;
-        disallow_target = true;
-        premium_html = "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, <a target='_blank' href='https://crinacle.com/wp-login.php?action=register'>subscribe</a> or upgrade to Patreon <a target='_blank' href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a> and switch to <a target='_blank' href='https://crinacle.com/graphs/iems/graphtool/premium/'>the premium tool</a>.</p>";
-    }
-}
-setRestricted();
-
-
-
-// Configure HTML accessories to appear at the bottom of the page. Displayed only if accessories (above) is true
-// There are a few templates here for ease of use / examples, but these variables accept any HTML
-const 
-    // Short text, center-aligned, useful for a little side info, credits, links to measurement setup, etc. 
-    simpleAbout = `
-        <p class="center">This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
-    `,
-    // Slightly different presentation to make more readable paragraphs. Useful for elaborated methodology, etc.
-    paragraphs = `
-        <h2>Viverra tellus in hac</h2>
-
-        <p>Lorem ipsum dolor sit amet, <a href="">consectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque non tellus orci ac. Dictumst quisque sagittis purus sit amet volutpat consequat. Vitae nunc sed velit dignissim sodales ut. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus in. Dignissim enim sit amet venenatis urna cursus eget nunc. Mi proin sed libero enim. Ut sem viverra aliquet eget sit amet. Integer enim neque volutpat ac tincidunt vitae. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Lacus luctus accumsan tortor posuere ac ut consequat semper. Non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Aliquam sem et tortor consequat id. Cursus sit amet dictum sit amet justo donec. Donec adipiscing tristique risus nec feugiat in fermentum posuere.</p>
-
-        <p>Diam donec adipiscing tristique risus nec. Amet nisl purus in mollis. Et malesuada fames ac turpis egestas maecenas pharetra. Ante metus dictum at tempor commodo ullamcorper a. Dui id ornare arcu odio ut sem nulla. Ut pharetra sit amet aliquam id diam maecenas. Scelerisque in dictum non consectetur a erat nam at. In ante metus dictum at tempor. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Euismod nisi porta lorem mollis aliquam ut porttitor leo a. Malesuada proin libero nunc consequat interdum. Turpis egestas sed tempus urna et pharetra pharetra massa massa. Quis blandit turpis cursus in hac habitasse. Amet commodo nulla facilisi nullam vehicula ipsum a.</p>
-
-        <p>Mauris ultrices eros in cursus turpis massa tincidunt. Aliquam ut porttitor leo a diam sollicitudin. Curabitur vitae nunc sed velit. Cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Lectus nulla at volutpat diam ut. Nibh nisl condimentum id venenatis a condimentum vitae sapien. Tincidunt id aliquet risus feugiat in ante metus. Elementum nibh tellus molestie nunc non blandit massa enim. Ac tortor vitae purus faucibus ornare suspendisse. Pellentesque sit amet porttitor eget. Commodo quis imperdiet massa tincidunt. Nunc sed id semper risus in hendrerit gravida. Proin nibh nisl condimentum id venenatis a condimentum. Tortor at risus viverra adipiscing at in. Pharetra massa massa ultricies mi quis hendrerit dolor. Tempor id eu nisl nunc mi ipsum faucibus vitae.</p>
-
-        <h2>Tellus orci</h2>
-
-        <p>Viverra mauris in aliquam sem. Viverra tellus in hac habitasse platea. Facilisi nullam vehicula ipsum a arcu cursus. Nunc sed augue lacus viverra vitae congue eu. Pretium fusce id velit ut tortor pretium viverra suspendisse. Eu scelerisque felis imperdiet proin. Tincidunt arcu non sodales neque sodales ut etiam sit amet. Tellus at urna condimentum mattis pellentesque. Congue nisi vitae suscipit tellus. Ut morbi tincidunt augue interdum.</p>
-
-        <p>Scelerisque in dictum non consectetur a. Elit pellentesque habitant morbi tristique senectus et. Nulla aliquet enim tortor at auctor urna nunc id. In ornare quam viverra orci. Auctor eu augue ut lectus arcu bibendum at varius vel. In cursus turpis massa tincidunt dui ut ornare lectus. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. A diam sollicitudin tempor id. Tellus mauris a diam maecenas sed enim ut sem. Pellentesque id nibh tortor id aliquet lectus proin. Fermentum et sollicitudin ac orci phasellus. Dolor morbi non arcu risus quis. Bibendum enim facilisis gravida neque. Tellus in metus vulputate eu scelerisque felis. Integer malesuada nunc vel risus commodo. Lacus laoreet non curabitur gravida arcu.</p>
-    `,
-    // Customize the count of widget divs, and customize the contents of them. As long as they're wrapped in the widget div, they should auto-wrap and maintain margins between themselves
-    widgets = `
-        <div class="accessories-widgets">
-            <div class="widget">
-                <img width="200" src="cringraph-logo.svg"/>
-            </div>
-
-            <div class="widget">
-                <img width="200" src="cringraph-logo.svg"/>
-            </div>
-
-            <div class="widget">
-                <img width="200" src="cringraph-logo.svg"/>
-            </div>
-        </div>
-    `,
-    // Which of the above variables to actually insert into the page
-    whichAccessoriesToUse = simpleAbout;
-
-
+// If alt_header is enabled, these are the items added to the header
+let headerLogoText = "",
+headerLogoImgUrl = null,
+headerLinks = [
+// {
+//     name: "Home Page",
+//     url: "https://afumi-io.github.io/"
+// }
+];
 
 // Configure external links to appear at the bottom of the page. Displayed only if externalLinksBar (above) is true
-const linkSets = [
-    {
-        label: "IEM graph databases",
-        links: [
-            {
-                name: "Paul Wasabi",
-                url: "https://pw.squig.link/"
-            }
-        ]
-    }
+let linkSets = [
+    // {
+    //     label: "IEM graph databases",
+    //     links: [
+    //         {
+    //             name: "Paul Wasabi",
+    //             url: "https://pw.squig.link/"
+    //         }
+    //     ]
+    // }
 ];
-
-
-
-// Set up analytics
-function setupGraphAnalytics() {
-    if ( analyticsEnabled ) {
-        const pageHead = document.querySelector("head"),
-              graphAnalytics = document.createElement("script"),
-              graphAnalyticsSrc = "graphAnalytics.js";
-        
-        graphAnalytics.setAttribute("src", graphAnalyticsSrc);
-        pageHead.append(graphAnalytics);
-    }
-}
-setupGraphAnalytics();
-
-
-
-// If alt_header is enabled, these are the items added to the header
-let headerLogoText = "Afumi IE DB",
-    headerLogoImgUrl = null,
-    headerLinks = [
-    {
-        name: "Home Page",
-        url: "https://afumi-io.github.io/"
-    }
-];
-
 
 let tutorialDefinitions = [
     {
@@ -244,4 +126,170 @@ let tutorialDefinitions = [
         width: '10%',
         description: 'In the way sub bass can add a sense of depth to the low end, <b>air</b> frequencies -- also called upper treble -- can add a dimensionality via the top end. When air frequencies are "rolled off," the sound may lose a sense of micro detail and definition, and cymbals may lose shimmer, leaving them blunt in their decay. Too much air is not common, but certainly possible, resulting in a fatiguing "shh shh" to cymbals, drum brushes, and other high-frequency sounds.'
     }
-]
+];
+
+// Specify which targets to display
+let targets = [
+    // { type:"Main",   
+    //     files: ["Afumi DT6IE", "Afumi DT10IE", "Base-line IE Neutral Testing", "Obviously Supperior 2 Nipples"] },
+    // { type:"Reference",
+    //     files: ["Harman IE 2019v2", "Harman IE 2016", "Diffuse Field"] },
+    // { type:"Other",   
+    //     files: ["PaulWasabii"] }
+];
+
+
+// Parse fr text data from REW or AudioTool format with whatever separator
+function tsvParse(fr) {
+    return fr.split(/[\r\n]/)
+        .map(l => l.trim()).filter(l => l && l[0] !== '*')
+        .map(l => l.split(/[\s,;]+/).map(e => parseFloat(e)).slice(0, 2))
+        .filter(t => !isNaN(t[0]) && !isNaN(t[1]));
+}
+    
+     
+d3.json('config_afumi.json').then(function(mycfg){
+    init_phones = mycfg.init_phones;
+    default_channels = mycfg.default_channels; 
+    default_normalization = mycfg.default_normalization; 
+    default_norm_db = mycfg.default_norm_db;   
+    default_norm_hz = mycfg.default_norm_hz;  
+    max_channel_imbalance = mycfg.max_channel_imbalance;  
+    alt_layout = mycfg.alt_layout;
+    alt_sticky_graph = mycfg.alt_sticky_graph; 
+    alt_animated = mycfg.alt_animated;
+    alt_header = mycfg.alt_header; 
+    alt_tutorial = mycfg.alt_tutorial;  
+    site_url = mycfg.site_url;
+    share_url = mycfg.site_url;
+    watermark_text = mycfg.watermark_text;
+    watermark_text2 = mycfg.watermark_text2;
+    watermark_image_url = mycfg.watermark_image_url;
+    page_title = mycfg.page_title; 
+    page_description = mycfg.page_description;
+    accessories = mycfg.accessories;
+    externalLinksBar = mycfg.externalLinksBar;
+    restricted = mycfg.restricted;
+    expandable = mycfg.expandable;
+    expandableOnly = mycfg.expandableOnly;
+    headerHeight = mycfg.headerHeight;  
+    darkModeButton = mycfg.darkModeButton;  
+    targetDashed = mycfg.targetDashed;
+    targetColorCustom = mycfg.targetColorCustom;    
+    labelsPosition = mycfg.labelsPosition;   
+    stickyLabels = mycfg.stickyLabels;          
+    analyticsEnabled = mycfg.analyticsEnabled;  
+    extraEnabled = mycfg.extraEnabled;       
+    extraUploadEnabled = mycfg.extraUploadEnabled;     
+    extraEQEnabled = mycfg.extraUploadEnabled;
+    extraEQBands = mycfg.extraEQBands;           
+    extraEQBandsMax = mycfg.extraEQBandsMax;
+    extraToneGeneratorEnabled = mycfg.extraToneGeneratorEnabled; 
+    targets = mycfg.advanced.targets;
+    linkSets = mycfg.advanced.footerLinks;
+    headerLogoText = mycfg.headerLogoText;
+    headerLogoImgUrl = mycfg.headerLogoImgUrl;
+    // alert(watermark_text);
+
+    // load graphs
+    loadGraph();    
+
+    // Apply stylesheet based layout options above
+    function setLayout() {
+        function applyStylesheet(styleSheet) {
+            var docHead = document.querySelector("head"),
+                linkTag = document.createElement("link");
+            
+            linkTag.setAttribute("rel", "stylesheet");
+            linkTag.setAttribute("type", "text/css");
+            
+            linkTag.setAttribute("href", styleSheet);
+            docHead.append(linkTag);
+        }
+
+        if ( !alt_layout ) {
+            applyStylesheet("style.css");
+        } else {
+            applyStylesheet("style-alt.css");
+            applyStylesheet("style-alt-theme.css");
+        }
+    }
+    setLayout();
+
+
+
+    // Set restricted mode
+    function setRestricted() {
+        if ( restricted ) {
+            max_compare = 2;
+            restrict_target = false;
+            disallow_target = true;
+            premium_html = "<h2>You gonna pay for that?</h2><p>To use target curves, or more than two graphs, <a target='_blank' href='https://crinacle.com/wp-login.php?action=register'>subscribe</a> or upgrade to Patreon <a target='_blank' href='https://www.patreon.com/join/crinacle/checkout?rid=3775534'>Silver tier</a> and switch to <a target='_blank' href='https://crinacle.com/graphs/iems/graphtool/premium/'>the premium tool</a>.</p>";
+        }
+    }
+    setRestricted();
+
+
+
+    // Configure HTML accessories to appear at the bottom of the page. Displayed only if accessories (above) is true
+    // There are a few templates here for ease of use / examples, but these variables accept any HTML
+    const 
+        // Short text, center-aligned, useful for a little side info, credits, links to measurement setup, etc. 
+        simpleAbout = `
+            <p class="center">This web software is based on the <a href="https://github.com/mlochbaum/CrinGraph">CrinGraph</a> open source software project.</p>
+        `,
+        // Slightly different presentation to make more readable paragraphs. Useful for elaborated methodology, etc.
+        paragraphs = `
+            <h2>Viverra tellus in hac</h2>
+
+            <p>Lorem ipsum dolor sit amet, <a href="">consectetur adipiscing elit</a>, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quisque non tellus orci ac. Dictumst quisque sagittis purus sit amet volutpat consequat. Vitae nunc sed velit dignissim sodales ut. Faucibus ornare suspendisse sed nisi lacus sed viverra tellus in. Dignissim enim sit amet venenatis urna cursus eget nunc. Mi proin sed libero enim. Ut sem viverra aliquet eget sit amet. Integer enim neque volutpat ac tincidunt vitae. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Lacus luctus accumsan tortor posuere ac ut consequat semper. Non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Aliquam sem et tortor consequat id. Cursus sit amet dictum sit amet justo donec. Donec adipiscing tristique risus nec feugiat in fermentum posuere.</p>
+
+            <p>Diam donec adipiscing tristique risus nec. Amet nisl purus in mollis. Et malesuada fames ac turpis egestas maecenas pharetra. Ante metus dictum at tempor commodo ullamcorper a. Dui id ornare arcu odio ut sem nulla. Ut pharetra sit amet aliquam id diam maecenas. Scelerisque in dictum non consectetur a erat nam at. In ante metus dictum at tempor. Eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Euismod nisi porta lorem mollis aliquam ut porttitor leo a. Malesuada proin libero nunc consequat interdum. Turpis egestas sed tempus urna et pharetra pharetra massa massa. Quis blandit turpis cursus in hac habitasse. Amet commodo nulla facilisi nullam vehicula ipsum a.</p>
+
+            <p>Mauris ultrices eros in cursus turpis massa tincidunt. Aliquam ut porttitor leo a diam sollicitudin. Curabitur vitae nunc sed velit. Cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Lectus nulla at volutpat diam ut. Nibh nisl condimentum id venenatis a condimentum vitae sapien. Tincidunt id aliquet risus feugiat in ante metus. Elementum nibh tellus molestie nunc non blandit massa enim. Ac tortor vitae purus faucibus ornare suspendisse. Pellentesque sit amet porttitor eget. Commodo quis imperdiet massa tincidunt. Nunc sed id semper risus in hendrerit gravida. Proin nibh nisl condimentum id venenatis a condimentum. Tortor at risus viverra adipiscing at in. Pharetra massa massa ultricies mi quis hendrerit dolor. Tempor id eu nisl nunc mi ipsum faucibus vitae.</p>
+
+            <h2>Tellus orci</h2>
+
+            <p>Viverra mauris in aliquam sem. Viverra tellus in hac habitasse platea. Facilisi nullam vehicula ipsum a arcu cursus. Nunc sed augue lacus viverra vitae congue eu. Pretium fusce id velit ut tortor pretium viverra suspendisse. Eu scelerisque felis imperdiet proin. Tincidunt arcu non sodales neque sodales ut etiam sit amet. Tellus at urna condimentum mattis pellentesque. Congue nisi vitae suscipit tellus. Ut morbi tincidunt augue interdum.</p>
+
+            <p>Scelerisque in dictum non consectetur a. Elit pellentesque habitant morbi tristique senectus et. Nulla aliquet enim tortor at auctor urna nunc id. In ornare quam viverra orci. Auctor eu augue ut lectus arcu bibendum at varius vel. In cursus turpis massa tincidunt dui ut ornare lectus. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu. A diam sollicitudin tempor id. Tellus mauris a diam maecenas sed enim ut sem. Pellentesque id nibh tortor id aliquet lectus proin. Fermentum et sollicitudin ac orci phasellus. Dolor morbi non arcu risus quis. Bibendum enim facilisis gravida neque. Tellus in metus vulputate eu scelerisque felis. Integer malesuada nunc vel risus commodo. Lacus laoreet non curabitur gravida arcu.</p>
+        `,
+        // Customize the count of widget divs, and customize the contents of them. As long as they're wrapped in the widget div, they should auto-wrap and maintain margins between themselves
+        widgets = `
+            <div class="accessories-widgets">
+                <div class="widget">
+                    <img width="200" src="cringraph-logo.svg"/>
+                </div>
+
+                <div class="widget">
+                    <img width="200" src="cringraph-logo.svg"/>
+                </div>
+
+                <div class="widget">
+                    <img width="200" src="cringraph-logo.svg"/>
+                </div>
+            </div>
+        `,
+        // Which of the above variables to actually insert into the page
+        whichAccessoriesToUse = simpleAbout;
+
+
+
+    
+
+
+
+    // Set up analytics
+    function setupGraphAnalytics() {
+        if ( analyticsEnabled ) {
+            const pageHead = document.querySelector("head"),
+                graphAnalytics = document.createElement("script"),
+                graphAnalyticsSrc = "graphAnalytics.js";
+            
+            graphAnalytics.setAttribute("src", graphAnalyticsSrc);
+            pageHead.append(graphAnalytics);
+        }
+    }
+    setupGraphAnalytics();
+
+});
