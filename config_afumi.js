@@ -186,6 +186,7 @@ d3.json('config_afumi.json').then(function(mycfg){
     extraEQBandsMax = mycfg.extraEQBandsMax;
     extraToneGeneratorEnabled = mycfg.extraToneGeneratorEnabled; 
     targets = mycfg.advanced.targets;
+    headerLinks = mycfg.advanced.headerLinks;
     linkSets = mycfg.advanced.footerLinks;
     headerLogoText = mycfg.headerLogoText;
     headerLogoImgUrl = mycfg.headerLogoImgUrl;
