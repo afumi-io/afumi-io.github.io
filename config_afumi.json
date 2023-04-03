@@ -12,7 +12,7 @@
     "alt_tutorial": true,  
     "site_url": "./",    
     "share_url": true,     
-    "watermark_text": "亜風実 IE DB",
+    "watermark_text": "亜風実異音 IE DB",
     "watermark_text2": "afumi-io.github.io",
     "watermark_image_url": "img/afumiio.png", 
     "page_title": "Afumi IE DB",   
@@ -41,7 +41,7 @@
         "headerLinks": [
             {
                 "name": "Home Page",
-                "url": "https://afumi-io.github.io/"
+                "url": "https://github.com/afumi-io"
             }
         ],
         "footerLinks": [
@@ -58,11 +58,11 @@
         "targets": [
             {
                 "type": "Main",
-                "files": ["Afumi DT6IE", "Afumi DT10IE", "Base-line IE Neutral Testing", "Obviously Supperior 2 Nipples"]
+                "files": ["Afumi DT6IE", "Afumi DT10IE", "Objectively Neutral", "Obviously Superior 2 Nipples"]
             },
             {
                 "type": "Reference",
-                "files": ["Harman IE 2019v2", "Harman IE 2016", "Diffuse Field"]
+                "files": ["Harman IE 2019v2", "Harman IE 2016", "Diffuse Field", "Free Field"]
             },
             {
                 "type": "Other",
