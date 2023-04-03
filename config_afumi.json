@@ -15,7 +15,7 @@
     "watermark_text": "亜風実異音 IE DB",
     "watermark_text2": "afumi-io.github.io",
     "watermark_image_url": "img/afumiio.png", 
-    "page_title": "Afumi IE DB",   
+    "page_title": "亜風実異音 IE DB",
     "page_description": "Database of headphone's frequency response",
     "accessories": false,  
     "externalLinksBar": true,    
@@ -58,14 +58,18 @@
         "targets": [
             {
                 "type": "Main",
-                "files": ["Afumi DT6IE", "Afumi DT10IE", "Objectively IE Neutral", "Obviously Superior 2 Nipples"]
+                "files": ["Afumi DT6IE", "Afumi DT10IE", "Objectively IE Neutral"]
             },
             {
                 "type": "Reference",
                 "files": ["Harman IE 2019v2", "Harman IE 2016", "Diffuse Field", "Free Field"]
             },
             {
-                "type": "Other",
+                "type": "Lulz",
+                "files": ["Obviously Superior 2 Nipples"]
+            },
+            {
+                "type": "Other Reviewer",
                 "files": ["PaulWasabii", "Sharur"]
             }
     ]
