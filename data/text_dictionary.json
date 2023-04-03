@@ -44,5 +44,19 @@
         ]
       }
     ]
+  },
+  {
+    "name" : "CCA",
+    "phones" : [
+      {
+        "name" : "CRA",
+        "file" : [
+          "CCA CRA S2"
+        ],
+        "suffix" : [
+          "S2"
+        ]
+      }
+    ]
   }
 ]
