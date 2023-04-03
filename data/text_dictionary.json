@@ -19,6 +19,15 @@
         "suffix" : [
           ""
         ]
+      },
+      {
+        "name" : "EDA",
+        "file" : [
+          "KZ EDA HiRes"
+        ],
+        "suffix" : [
+          "HiRes"
+        ]
       }
     ]
   },
